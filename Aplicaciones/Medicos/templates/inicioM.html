@@ -1,0 +1,72 @@
+{% extends './plantilla.html' %}
+{% block contenido %}
+<br>
+<h1>Listado de Medicos</h1>
+<hr>
+<br>
+<div class="text-end">
+    <a href="nuevoMedico" class="btn btn-primary bg-dark">Agregar Medico</a>
+</div>
+<br>
+<br>
+<table class="table table-bordered table-striped table-hover">
+    <thead class="bg-dark" style="color: white;">
+        <tr>
+            <th>ID</th>
+            <th>NOMBRE</th>
+            <th>ESPECIALIDAD</th>
+            <th>CONSULTORIO</th>
+            <th>HORARIO</th>
+            <th>LICENCIA</th>
+            <th>CONTACTO</th>
+            <th>ACCIONES</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for MedicoTemporal in medicos %}
+            <tr>
+                <td>{{MedicoTemporal.id}}</td>
+                <td>{{MedicoTemporal.nombre}}</td>
+                <td>{{MedicoTemporal.especialidad}}</td>
+                <td>{{MedicoTemporal.consultorio}}</td>
+                <td>{{MedicoTemporal.horario}}</td>
+                <td>{{MedicoTemporal.licencia}}</td>
+                <td>{{MedicoTemporal.contacto}}</td>
+                <td>
+                    <a href="editarMedico/{{MedicoTemporal.id}}" class="btn btn-outline-warning">
+                        <i class="fa fa-pen"></i>    
+                    </a>
+                    <a href="#"  class="btn btn-outline-danger" onclick="confirmarEliminacion('{{ MedicoTemporal.id }}')" >
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table><br><br><br><br><br><br><br><br><br><br><br><br>
+<script>
+    function confirmarEliminacion(id) {
+        Swal.fire({
+            title: "¿Estás seguro?",
+            text: "¡No podrás revertir esta acción!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sí, eliminar",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/medicos/eliminarMedico/" + id;
+            } else {
+                Swal.fire({
+                    title: "Cancelado",
+                    text: "La acción fue cancelada.",
+                    icon: "info",
+                    confirmButtonText: "OK"
+                });
+            }
+        });
+    }
+</script>
+{% endblock %}

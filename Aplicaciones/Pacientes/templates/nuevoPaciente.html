@@ -1,0 +1,35 @@
+{% extends './plantilla.html' %}
+{% block contenido %}
+<div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6 bg-light">
+        <h1>Nuevo Paciente</h1>
+        <form action="/guardarPaciente/"  method="post">
+            {% csrf_token %}
+            <label for="">Nombre del Paciente:</label>
+            <input class="form-control" type="text" name="nombre" id="nombre">
+            <br><br><br>
+            <label for="">Cédula del Paciente:</label>
+            <input class="form-control"  type="text" name="cedula" id="cedula">
+            <br><br><br>
+            <label for="">Edad del Paciente:</label>
+            <input class="form-control"  type="text" name="edad" id="edad">
+            <br><br><br>
+            <label for="">Tipo de Sangre:</label>
+            <input class="form-control"  type="text" name="tipo_sangre" id="tipo_sangre">
+            <br><br><br>
+            <label for="">Seguro:</label>
+            <input class="form-control"  type="text" name="seguro" id="seguro">
+            <br><br><br>
+            <label for="">Dirección:</label>
+            <textarea class="form-control"  name="direccion" id="direccion"  rows="5"></textarea>
+            
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a class="btn btn-outline-danger" href="/">Cancelar</a>
+        </form>
+    </div>
+    <div class="col-md-3">   
+    </div>
+</div><br><br><br>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends './plantilla.html' %}
+{% block contenido %}
+<div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6 bg-light">
+        <h1>Nuevo Mensaje</h1>
+        <form action="/mensajes/guardarMensaje/"  method="post">
+            {% csrf_token %}
+            <label for="">Nombre del Remitente:</label>
+            <input class="form-control" type="text" name="remitente" id="remitente">
+            <br><br><br>
+            <label for="">Nombre del Destinatario:</label>
+            <input class="form-control"  type="text" name="destinatario" id="destinatario">
+            <br><br><br>
+            <label for="">Contenido:</label>
+            <input class="form-control"  type="text" name="contenido" id="contenido">
+            <br><br><br>
+            <label for="">Fecha:</label>
+            <input class="form-control"  type="text" name="fecha" id="fecha">
+            <br><br><br>
+            <label for="">Asunto:</label>
+            <input class="form-control"  type="text" name="asunto" id="asunto">
+            <br><br><br>
+
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a class="btn btn-outline-danger" href="/mensajes/">Cancelar</a>
+        </form>
+    </div>
+    <div class="col-md-3">   
+    </div>
+</div><br><br><br>
+{% endblock %}

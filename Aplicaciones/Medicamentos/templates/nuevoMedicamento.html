@@ -1,0 +1,35 @@
+{% extends './plantilla.html' %}
+{% block contenido %}
+<div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6 bg-light">
+        <h1>Nuevo Medicamento</h1>
+        <form action="/medicamentos/guardarMedicamento/"  method="post">
+            {% csrf_token %}
+            <label for="">Nombre del Medicamento:</label>
+            <input class="form-control" type="text" name="nombre" id="nombre">
+            <br><br><br>
+            <label for="">Laboratorio de elaboración:</label>
+            <input class="form-control"  type="text" name="laboratorio" id="laboratorio">
+            <br><br><br>
+            <label for="">Dosis:</label>
+            <textarea class="form-control"  name="dosis" id="dosis"  rows="5"></textarea>
+            <br><br><br>
+            <label for="">Presentación:</label>
+            <input class="form-control"  type="text" name="presentacion" id="presentacion">
+            <br><br><br>
+            <label for="">Precio:</label>
+            <input class="form-control"  type="text" name="precio" id="precio">
+            <br><br><br>
+            <label for="">Caducidad:</label>
+            <input class="form-control"  type="text" name="caducidad" id="caducidad">
+            <br><br><br>
+            <button type="submit" class="btn btn-success" >Guardar</button>
+            <a class="btn btn-outline-danger" href="/medicamentos/">Cancelar</a>
+        </form>
+    </div>
+    <div class="col-md-3">   
+    </div>
+</div><br><br><br>
+{% endblock %}

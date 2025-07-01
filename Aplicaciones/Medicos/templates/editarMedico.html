@@ -1,0 +1,36 @@
+{% extends './plantilla.html' %}
+{% block contenido %}
+<div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6 bg-light">
+        <h1>Nuevo Medico</h1>
+        <form action="/medicos/procesarEdicionMedico/{{medicoEditar.id}}"  method="post">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{medicoEditar.id}}">
+            <label for="">Nombre del Medico:</label>
+            <input class="form-control" type="text" name="nombre" id="nombre" value="{{medicoEditar.nombre}}">
+            <br><br><br>
+            <label for="">Especialidad:</label>
+            <input class="form-control"  type="text" name="especialidad" id="especialidad" value="{{medicoEditar.especialidad}}">
+            <br><br><br>
+            <label for="">Consultorio:</label>
+            <input class="form-control"  type="text" name="consultorio" id="consultorio" value="{{medicoEditar.consultorio}}">
+            <br><br><br>
+            <label for="">Horario:</label>
+            <input class="form-control"  type="text" name="horario" id="horario" value="{{medicoEditar.horario}}">
+            <br><br><br>
+            <label for="">Licencia:</label>
+            <input class="form-control"  type="text" name="licencia" id="licencia" value="{{medicoEditar.licencia}}">
+            <br><br><br>
+            <label for="">Contacto:</label>
+            <input class="form-control"  type="text" name="contacto" id="contacto" value="{{medicoEditar.contacto}}">
+
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a class="btn btn-outline-danger" href="/medicos/">Cancelar</a>
+        </form>
+    </div>
+    <div class="col-md-3">   
+    </div>
+</div><br><br><br>
+{% endblock %}

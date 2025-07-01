@@ -1,0 +1,70 @@
+{% extends './plantilla.html' %}
+{% block contenido %}
+<br>
+<h1>Listado de Mensajes</h1>
+<hr>
+<br>
+<div class="text-end">
+    <a href="nuevoMensaje" class="btn btn-primary bg-dark">Agregar Mensaje</a>
+</div>
+<br>
+<br>
+<table class="table table-bordered table-striped table-hover">
+    <thead class="bg-dark" style="color: white;">
+        <tr>
+            <th>ID</th>
+            <th>REMITENTE</th>
+            <th>DESTINATARIO</th>
+            <th>CONTENIDO</th>
+            <th>FECHA</th>
+            <th>ASUNTO</th>
+            <th>ACCIONES</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for MensajeTemporal in mensajes %}
+            <tr>
+                <td>{{MensajeTemporal.id}}</td>
+                <td>{{MensajeTemporal.remitente}}</td>
+                <td>{{MensajeTemporal.destinatario}}</td>
+                <td>{{MensajeTemporal.contenido}}</td>
+                <td>{{MensajeTemporal.fecha}}</td>
+                <td>{{MensajeTemporal.asunto}}</td>
+                <td>
+                    <a href="editarMensaje/{{MensajeTemporal.id}}" class="btn btn-outline-warning">
+                        <i class="fa fa-pen"></i>    
+                    </a>
+                    <a href="#"  class="btn btn-outline-danger" onclick="confirmarEliminacion('{{ MensajeTemporal.id }}')" >
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table><br><br><br><br><br><br><br><br><br><br><br><br>
+<script>
+    function confirmarEliminacion(id) {
+        Swal.fire({
+            title: "¿Estás seguro?",
+            text: "¡No podrás revertir esta acción!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sí, eliminar",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/mensajes/eliminarMensaje/" + id;
+            } else {
+                Swal.fire({
+                    title: "Cancelado",
+                    text: "La acción fue cancelada.",
+                    icon: "info",
+                    confirmButtonText: "OK"
+                });
+            }
+        });
+    }
+</script>
+{% endblock %}
